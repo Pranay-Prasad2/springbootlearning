@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/_journal")
+@RequestMapping("/journal")
 public class JournelEnteryController {
     private Map<ObjectId,JournalEntry> journalentries = new HashMap<>();
 

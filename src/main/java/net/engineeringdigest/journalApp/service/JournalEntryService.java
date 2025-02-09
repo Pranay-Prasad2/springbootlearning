@@ -1,24 +1,33 @@
 package net.engineeringdigest.journalApp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repositry.JournalEntryRepositry;
 import org.bson.types.ObjectId;
+
+// slf4j logback implimentation (Simple Logging Facade for Java)
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
+@Slf4j
 public class JournalEntryService {
 
     @Autowired
     private JournalEntryRepositry journalEntryRepositry;
     @Autowired
     private UserEntryService userEntryService;
+
+    private static final Logger logger = LoggerFactory.getLogger(JournalEntryService.class);
 
     @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName){
@@ -30,6 +39,7 @@ public class JournalEntryService {
             user.getJournalEntries().add(saved);
             userEntryService.saveUser(user);
         } catch (Exception e) {
+            log.info("Error in saving a entry");
             throw new RuntimeException("An Error Occurred while saving the entry",e);
         }
 
@@ -58,7 +68,7 @@ public class JournalEntryService {
                 journalEntryRepositry.deleteById(id);
             }
         }catch (Exception e) {
-            System.out.println(e);
+            log.info("Error in deleting a entry",e);
             throw new RuntimeException("An Error occurred while deleting the entry.", e);
         }
         return removed;

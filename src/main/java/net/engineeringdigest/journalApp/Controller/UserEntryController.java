@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/user")
 public class UserEntryController {
 
+    //using reddis in this project
     @Autowired
     private UserEntryService userEntryService;
     @Autowired

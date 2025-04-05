@@ -9,7 +9,6 @@ A Spring Boot backend for a journal application, providing CRUD operations for j
 
 ## Screenshots
 
-[App Screenshot]
 ![Screenshot 2025-03-18 204450](https://github.com/user-attachments/assets/873b75b5-60b0-426f-b263-b27818c38d79)
 
 
